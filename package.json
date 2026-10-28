@@ -4,10 +4,10 @@
   "main": "index.js",
   "scripts": {
     "dev": "tsx watch src/index.ts",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "tsc -p tsconfig.test.json",
     "build": "tsc",
     "start": "node dist/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "tsx --test tests/command.test.ts tests/format-stats.test.ts"
   },
   "keywords": [],
   "author": "",
