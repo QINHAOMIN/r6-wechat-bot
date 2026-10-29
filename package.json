@@ -7,7 +7,7 @@
     "typecheck": "tsc -p tsconfig.test.json",
     "build": "tsc",
     "start": "node dist/index.js",
-    "test": "tsx --test tests/command.test.ts tests/format-stats.test.ts"
+    "test": "tsx --test tests/command.test.ts tests/format-stats.test.ts tests/message-handler.test.ts tests/bot.test.ts"
   },
   "keywords": [],
   "author": "",

@@ -1,18 +1,27 @@
-import { parseCommand } from "./commands.js";
-import { getDemoStats } from "./demo-stats.js";
-import { formatDemoStats } from "./format-stats.js";
+import { startBot } from "./bot.js";
+import { demoStatsProvider } from "./demo-stats.js";
+import { MockMessageAdapter } from "./mock-message-adapter.js";
 
-const message = "@机器人 查询 DemoPlayer";
+async function main(): Promise<void> {
+  const adapter = new MockMessageAdapter([
+    {
+      groupId: "demo-group",
+      senderId: "demo-user",
+      text: "@机器人 查询 IgnoredPlayer",
+      mentionedBot: false,
+    },
+    {
+      groupId: "demo-group",
+      senderId: "demo-user",
+      text: "@机器人 查询 DemoPlayer",
+      mentionedBot: true,
+    },
+  ]);
 
-console.log(`模拟群消息：${message}`);
-
-const command = parseCommand(message);
-
-if (command) {
-  const stats = getDemoStats(command.playerId);
-  const reply = formatDemoStats(stats);
-
-  console.log(reply);
-} else {
-  console.log("未识别到有效查询指令");
+  await startBot(adapter, demoStatsProvider);
 }
+
+main().catch((error: unknown) => {
+  console.error("本地模拟机器人运行失败：", error);
+  process.exitCode = 1;
+});

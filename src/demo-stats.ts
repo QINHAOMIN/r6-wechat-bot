@@ -1,10 +1,7 @@
-export interface DemoStats {
+import type { PlayerStats, StatsProvider } from "./stats-provider.js";
+
+export interface DemoStats extends PlayerStats {
   source: "demo";
-  playerId: string;
-  kills: number;
-  deaths: number;
-  wins: number;
-  losses: number;
 }
 
 export function getDemoStats(playerId: string): DemoStats {
@@ -17,3 +14,9 @@ export function getDemoStats(playerId: string): DemoStats {
     losses: 20,
   };
 }
+
+export const demoStatsProvider: StatsProvider = {
+  async getStats(playerId) {
+    return getDemoStats(playerId);
+  },
+};
