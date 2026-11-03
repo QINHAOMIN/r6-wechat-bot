@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "tsx watch src/index.ts",
+    "dev": "tsx watch --env-file=.env src/index.ts",
+    "query": "tsx --env-file=.env src/query-r6data.ts",
     "typecheck": "tsc -p tsconfig.test.json",
     "build": "tsc",
-    "start": "node dist/index.js",
-    "test": "tsx --test tests/command.test.ts tests/format-stats.test.ts tests/message-handler.test.ts tests/bot.test.ts"
+    "start": "node --env-file=.env dist/index.js",
+    "test": "tsx --test tests/command.test.ts tests/format-stats.test.ts tests/message-handler.test.ts tests/bot.test.ts tests/ranks.test.ts tests/metrics.test.ts tests/r6data-overview.test.ts"
   },
   "keywords": [],
   "author": "",
